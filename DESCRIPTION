@@ -43,7 +43,6 @@ Imports:
     fs,
     graphics,
     GenomicRanges,
-    GenomicTools,
     GenomicTools.fileHandler,
     glue,
     ggforce,
