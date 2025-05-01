@@ -2,7 +2,15 @@
   [![R build status](https://github.com/kelshmo/sageseqr/workflows/R-CMD-check/badge.svg)](https://github.com/kelshmo/sageseqr/actions)
 <!-- badges: end -->
 # Installation 
-`remotes::install_github("Sage-Bionetworks/sageseqr")`
+
+Install the package with:
+```
+remotes::install_github("Sage-Bionetworks/sageseqr")
+```
+or
+```
+devtools::install_github("Sage-Bionetworks/sageseqr")
+```
 
 **Note:** If installation fails with this error:
 ```
