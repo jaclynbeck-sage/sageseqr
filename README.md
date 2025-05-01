@@ -4,6 +4,17 @@
 # Installation 
 `remotes::install_github("Sage-Bionetworks/sageseqr")`
 
+**Note:** If installation fails with this error:
+```
+ERROR: dependency ‘synapser’ is not available for package 'sageseqr'
+```
+you can solve this with the following:
+```
+reticulate::virtualenv_create('r-reticulate')
+install.packages("synapser", repos = "http://ran.synapse.org")
+```
+Then try installing sageseqr again.
+
 # RNA-seq normalization workflow in R
 
 The `sageseqr` package integrates the [`targets` R package](https://github.com/ropensci/targets/), the [`config` package for R](https://cran.r-project.org/web/packages/config/vignettes/introduction.html), and [Synapse](https://www.synapse.org/). `targets` tracks dependency relationships in the workflow and only updates data when it has changed. A `config` file allows inputs and parameters to be explicitly defined in one location. Synapse is a data repository that allows sensitive data to be [stored and shared responsibly](https://docs.synapse.org/articles/article_index.html#governance). 
