@@ -808,15 +808,15 @@ conditional_plot_sexcheck <- function(clean_metadata, count_df, biomart_results,
 #' @export
 identify_outliers <- function(filtered_counts, clean_metadata,
                               color, shape, size, z = 4) {
-  PC <- stats::prcomp(limma::voom(
-    filtered_counts),
+  norm_counts <- limma::voom(filtered_counts)
+  PC <- stats::prcomp(t(norm_counts$E),
     scale. = TRUE,
     center = TRUE)
 
   # Plot first 2 PCs
-  data <- data.frame(SampleID = rownames(PC$rotation),
-                     PC1 = PC$rotation[,1],
-                     PC2 = PC$rotation[,2])
+  data <- data.frame(SampleID = rownames(PC$x),
+                     PC1 = PC$x[,1],
+                     PC2 = PC$x[,2])
 
   # Percentage from each PC
   eigen <- PC$sdev^2
