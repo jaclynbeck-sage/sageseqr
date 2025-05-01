@@ -251,7 +251,7 @@ gtf_stats <- function( i, data, genome){
 #'file version number.
 #'@param cores An integer of cores to specify in the parallel backend (eg. 4).
 #'@param isexon Defaults to FALSE. If TRUE, the GC and Gene Length parameters will
-#'only consider exotic regions and omit intronic regions.
+#'only consider exonic regions and omit intronic regions.
 #'@importFrom rlang .data
 #'@export
 get_biomart <- function(count_df, synid, version, host, filters, organism,

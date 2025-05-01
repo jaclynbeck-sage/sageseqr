@@ -84,7 +84,6 @@ Additional_repositories:
 Remotes:
     GabrielHoffman/mvIC,
     Sage-Bionetworks/sagethemes@main,
-    GabrielHoffman/variancePartition,
-    fischuu/GenomicTools
+    GabrielHoffman/variancePartition
 VignetteBuilder:
     knitr
