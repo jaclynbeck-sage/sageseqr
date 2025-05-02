@@ -939,7 +939,7 @@ plot_sexcheck_pca <- function(clean_metadata, count_df, biomart_results,
   norm_counts <- limma::voom(filtered_counts)
   sex_counts <- norm_counts$E[row.names(norm_counts) %in% sex_genes, ]
 
-  sex_pc <- stats::prcomp(t(sex_counts), scale. = TRUE, center = TRUE)
+  sex_pc <- stats::prcomp(sex_counts, scale. = TRUE, center = TRUE)
 
   # retain number of components explaining 1 or more percent total variance
   filt_pcs <- length(sex_pc$sdev[sex_pc$sdev^2 / sum(sex_pc$sdev^2) >= 0.01])
@@ -962,10 +962,10 @@ plot_sexcheck_pca <- function(clean_metadata, count_df, biomart_results,
   }
 
   # create a new data frame with relevant PCs, XIST and UTY expression
-  scan_vars <- as.data.frame(sex_pc$x[, 1:filt_pcs]) %>%
+  scan_vars <- as.data.frame(sex_pc$rotation[, 1:filt_pcs]) %>%
     dplyr::mutate("xist" := as.numeric(sex_counts[xist_ensg, ])) %>%
     dplyr::mutate("uty" := as.numeric(sex_counts[uty_ensg, ]))
-  row.names(scan_vars) <- row.names(sex_pc$x)
+  row.names(scan_vars) <- row.names(sex_pc$rotation)
 
   # correlate the PCs above 1 to sex- specific genes XIST and UTY
   test_vals <- as.data.frame(
@@ -1057,7 +1057,7 @@ plot_sexcheck_pca <- function(clean_metadata, count_df, biomart_results,
   # cluster the PC that is correlated to XIST and UTY
   # force to 2 kmeans cluster centers
   fit <- stats::kmeans(
-    sex_pc$x[, which.max(test_vals$xist_coeff)],
+    sex_pc$rotation[, which.max(test_vals$xist_coeff)],
     2
   )
 
