@@ -34,5 +34,5 @@ test_that("there are no missing values, which would indicate a joining error", {
 })
 
 test_that("output is plot", {
-  expect_true("gg" %in% class(plot$plot))
+  expect_true(inherits(plot$plot, "gg"))
 })
