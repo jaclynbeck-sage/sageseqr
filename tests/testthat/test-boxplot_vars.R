@@ -6,5 +6,5 @@ test_that("output is plot", {
   output <- boxplot_vars(metadata,
                          include_vars = c("pmi", "ageofdeath"),
                          x_var = "diagnosis")
-  testthat::expect_equal(class(output), c("gg", "ggplot"))
+  testthat::expect_true(inherits(output, "gg"))
 })

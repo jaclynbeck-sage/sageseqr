@@ -24,8 +24,10 @@ metadata <- data.frame(
   stringsAsFactors = FALSE
 )
 
-ENSG00000183878 <- c(rchisq(40,24), rchisq(40,2))
-ENSG00000229807 <- c(rchisq(40,2), rchisq(40,24))
+set.seed(1001)
+
+ENSG00000183878 <- c(rchisq(40,50), rchisq(40,2))
+ENSG00000229807 <- c(rchisq(40,2), rchisq(40,50))
 ENSG00000183811 <- c(rchisq(53,5), rchisq(27,4))
 ENSG00000229822 <- c(rchisq(53,3), rchisq(27,7))
 ENSG00000183833 <- c(rchisq(17,16), rchisq(63,22))
@@ -41,5 +43,5 @@ colnames(counts) <- paste0( 'S', 1:80)
 plot <- plot_sexcheck_pca(metadata, counts, biomart, sex_var = "sex")
 
 test_that("output is plot", {
-  expect_true("gg" %in% class(plot$plot))
+  expect_true(inherits(plot$plot, "gg"))
 })

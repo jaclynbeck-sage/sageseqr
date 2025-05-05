@@ -18,7 +18,7 @@ test_that("output data frame subset to primary and model variables.", {
 })
 
 test_that("output is formula.",{
-  expect_equal(class(output$formula), "formula")
+  expect_true(inherits(output$formula, "formula"))
 })
 
 test_that("error if variables are both included and excluded",{
